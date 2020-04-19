@@ -1,0 +1,28 @@
+<div class="container">
+<h1 style="text-align: center;">Koszyk</h1>
+<table class="table">
+  <thead>
+    <tr class="row">
+    <th scope="col" class="col">Nazwa produktu</th>
+    <th scope="col" class="col">Cena</th>
+    <th scope="col" class="col">Ilość</th>
+    <th scope="col" class="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products" class="row">
+      <td class="col">{{product.name}}</td>
+      <td class="col">{{product.price + " zł"}}</td>
+      <td class="col"><input type="number" value="{{product.quantity}}" (keyup)="onImput($event)"></td>
+      <td class="col"><button class="btn btn-danger" (click)="deleteProduct(product.id)">Usuń</button></td>
+    </tr>
+  </tbody>
+<tfoot>
+  <tr class="row">
+    <td class="col">
+      <div>Wartość</div><input value="{{total}}">
+    </td>
+  </tr>
+</tfoot>
+</table>
+</div>
