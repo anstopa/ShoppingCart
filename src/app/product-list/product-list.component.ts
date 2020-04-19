@@ -12,16 +12,16 @@ import { Observable } from 'rxjs';
 export class ProductListComponent implements OnInit {
   products: Product[];
   product: any = {};
-  term: any;
+  term: any;              //search
 
-  constructor(private http: HttpClient,
-    private cartService: CartService) { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.getProducts().subscribe(response => {
       this.products = response;
       console.log(this.products)
     });
+
   }
 getProducts():Observable<Product[]>{
   return this.http.get<Product[]>('http://localhost:5000/api/products/' + 'getProduct');
@@ -36,11 +36,8 @@ getProducts():Observable<Product[]>{
 
   addToCard(product: Product) {
 
-    return this.http.post('http://localhost:5000/api/cart/' + 'addProductToCart', product).subscribe();
+    return this.http.put('http://localhost:5000/api/cart/' + product.id, product).subscribe();
   }
 
-  updateProductList(product){
-
-  }
 
 }

@@ -1,5 +1,9 @@
 <div class="container">
+  <a routerLink="" class="col ">
+  <button class="btn btn-outline-info">Katalog</button>
+</a>
 <h1 style="text-align: center;">Koszyk</h1>
+
 <table class="table">
   <thead>
     <tr class="row">
@@ -12,8 +16,8 @@
   <tbody>
     <tr *ngFor="let product of products" class="row">
       <td class="col">{{product.name}}</td>
-      <td class="col">{{product.price + " zł"}}</td>
-      <td class="col"><input type="number" value="{{product.quantity}}" (keyup)="onImput($event)"></td>
+      <td class="col">{{product.price}} zł</td>
+      <td class="col"><input type="number" [(ngModel)] = product.quantity (ngModelChange)="getTotal(); addToCard(product)" ></td>
       <td class="col"><button class="btn btn-danger" (click)="deleteProduct(product.id)">Usuń</button></td>
     </tr>
   </tbody>

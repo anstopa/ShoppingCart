@@ -27,4 +27,6 @@ clearCart(){
   deleteProduct(id: number): Observable<Product[]> {
     return this.http.delete<Product[]>(`${this.url}/${id}`);
   }
+
+  
 }
