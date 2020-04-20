@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  products: Product[];
+  products: Product[] =[];
   product: any = {};
   term: any;              //search
 
@@ -20,6 +20,7 @@ export class ProductListComponent implements OnInit {
     this.getProducts().subscribe(response => {
       this.products = response;
       console.log(this.products)
+
     });
 
   }
@@ -28,15 +29,15 @@ getProducts():Observable<Product[]>{
 
 
 }
-  postProducts(product: Product) {
-    console.log(product.name, product.price)
-    return this.http.post('http://localhost:5000/api/products/' + 'addProduct', product).subscribe();
+  postProducts(products: Product) {
+    console.log(products.name, products.price)
+    return this.http.post('http://localhost:5000/api/products/' + 'addProduct', products).subscribe();
 
   };
 
-  addToCard(product: Product) {
+  addToCard(products: Product) {
 
-    return this.http.put('http://localhost:5000/api/cart/' + product.id, product).subscribe();
+    return this.http.put('http://localhost:5000/api/cart/' + products.id, products).subscribe();
   }
 
 

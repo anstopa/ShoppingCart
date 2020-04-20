@@ -1,7 +1,7 @@
 <div class="container mw-8">
   <h1 style="text-align: center;">Katalog Produktów</h1>
   <input type="text" class="form-control col" placeholder="Wyszukaj produkty" [(ngModel)]="term">
-  <form #orderProduct="ngForm" (ngSubmit)="postProducts(product)">
+
 <table class="table">
   <thead>
     <tr class="row">
@@ -19,7 +19,9 @@
     <td class="col"><button class=" btn btn-primary" (click)="addToCard(product)">Dodaj do koszyka</button></td>
   </tr>
 </tbody>
-<tfoot>
+</table>
+
+<form #orderProduct="ngForm" (ngSubmit)="postProducts(product)">
   <h1 style="text-align: center;">Zamów towar</h1>
   <tr class="row">
     <td class="col"><input type="text" placeholder="wprowadź nazwę towaru" [(ngModel)]="product.name" name="name" required></td>
@@ -29,9 +31,5 @@
   <button class="btn btn-outline-info">Koszyk</button>
 </a></td>
   </tr>
-</tfoot>
-
-
-</table>
 </form>
 </div>

@@ -38,15 +38,11 @@ export class CartComponent implements OnInit {
   deleteProduct(id: number) {
 
     this.cartService.deleteProduct(id).subscribe();
-    window.location.reload();
+    location.reload();
 
   }
   getCartProducts(): Observable<Product[]> {
     return this.http.get<Product[]>('http://localhost:5000/api/cart/' + 'getCartProducts');
-  }
-  addToCard(product: Product) {
-
-    return this.http.put('http://localhost:5000/api/cart/' + product.id, product).subscribe();
   }
 
 }
