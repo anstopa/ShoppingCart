@@ -17,7 +17,7 @@ export class CartService {
   }
 
   deleteProduct(id: number): Observable<Product[]> {
-    return this.http.delete<Product[]>(`${this.url}${this.port}/api/card/${id}`);
+    return this.http.delete<Product[]>(`${this.url}${this.port}/api/cart/${id}`);
   }
   getCartProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.url}${this.port}/api/cart/getCartProducts`);

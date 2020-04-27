@@ -1,7 +1,7 @@
 <div class="container mw-8">
-  <div class="d-flex sticky-top bg-light ">
+  <div class="d-flex sticky-top bg-light row">
   <h1 class="flex-row p-2" style="text-align: center;">Katalog Produktów</h1>
-    <input type="text" class="form-control col flex-row ml-3" placeholder="Wyszukaj produkty" [(ngModel)]="term">
+    <input type="text" class="form-control col flex-row ml-3" placeholder="Wyszukaj produkty" [(ngModel)]="searchText">
   <a routerLink="/cart" style="text-align: right" class="col flex-row ">
     <button class="btn btn-outline-info ">Koszyk<p>{{counter}}</p></button>
   </a>
@@ -19,7 +19,7 @@
     </tr>
     </thead>
   </table>
-  <form #addToCart="ngForm" *ngFor="let product of products | filter: term" (ngSubmit)="addToCard(product)">
+  <form #addToCart="ngForm" *ngFor="let product of products | filter : searchText" (ngSubmit)="addToCard(product)">
     <table class="table">
 
       <tr class="row" [class.isCart]="isInCart(product)">

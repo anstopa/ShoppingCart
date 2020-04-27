@@ -19,12 +19,12 @@ export class CatalogService {
     return this.http.get<Product[]>(`${this.url}${this.port}/api/products/getProduct`);
   }
 
-  postProducts(products: Product) {
-    return this.http.post(`${this.url}${this.port}/api/products/addProduct`, products);
+  postProducts(product: Product) {
+    return this.http.post(`${this.url}${this.port}/api/products/addProduct`, product);
   }
 
-  addToCard(products: Product) {
-    return this.http.put(`${this.url}${this.port}/api/cart/products.id`, products);
+  addToCard(product: Product) {
+    return this.http.put(this.url + this.port + '/api/cart/' + product.id, product);
   }
 
 

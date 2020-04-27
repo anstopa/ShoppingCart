@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="d-flex sticky-top bg-light row ">
+  <a routerLink="" class="col flex-row  text-decoration-none">
+    <button class="btn btn-outline-info">Katalog</button>
+  </a>
+  <h1 class="flex-row mw-50 " style="text-align: center;">Koszyk</h1>
+  </div>
+  <table class="table">
+    <thead>
+    <tr class="row">
+      <th scope="col" class="col">Nazwa produktu</th>
+      <th scope="col" class="col">Cena</th>
+      <th scope="col" class="col">Ilość</th>
+      <th scope="col" class="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of products" class="row">
+      <td class="col">{{product.name}}</td>
+      <td class="col">{{product.price}} zł</td>
+      <td class="col d-flex"><input type="number" #quantity="ngModel" [(ngModel)]=product.quantity pattern="^[1-9]\d*$">
+        <p class="flex-row text-danger ml-2" *ngIf="quantity.errors?.pattern">Ilość nie może być ujemna</p></td>
+      <td class="col">
+        <button class="btn btn-danger" (click)="deleteProduct(product.id)">Usuń</button>
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr class="row">
+      <td class="col">
+        <div>Wartość</div>
+        <p>{{total}}</p>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>

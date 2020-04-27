@@ -13,7 +13,7 @@ export class CatalogComponent implements OnInit {
   products: Product[] = [];
   product: Product;
   cartProduct: Product[] = [];
-  term: any;
+  searchText: string;
 
   constructor(private catalogService: CatalogService, private castService: CartService) {
   }
