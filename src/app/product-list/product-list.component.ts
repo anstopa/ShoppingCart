@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { CartService } from '../services/cart.service';
-import { Product } from '../product';
-import { Observable } from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {CartService} from '../services/cart.service';
+import {Product} from '../product';
+import {CatalogService} from '../services/catalog.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -10,35 +11,26 @@ import { Observable } from 'rxjs';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  products: Product[] =[];
+  products: Product[] = [];
   product: any = {};
-  term: any;              //search
+  term: any;              // search
 
-  constructor(private http: HttpClient) { }
+  constructor(private service: CatalogService) {
+  }
 
   ngOnInit(): void {
-    this.getProducts().subscribe(response => {
+    this.service.getProducts().subscribe(response => {
       this.products = response;
-      console.log(this.products)
+      console.log(this.products);
 
     });
-
-  }
-getProducts():Observable<Product[]>{
-  return this.http.get<Product[]>('http://localhost:5000/api/products/' + 'getProduct');
-
-
-}
-  postProducts(products: Product) {
-    console.log(products.name, products.price)
-    return this.http.post('http://localhost:5000/api/products/' + 'addProduct', products).subscribe();
-
-  };
-
-  addToCard(products: Product) {
-
-    return this.http.put('http://localhost:5000/api/cart/' + products.id, products).subscribe();
   }
 
+  addToCard() {
+    this.service.addToCard(this.product).subscribe();
+  }
 
+  addProduct() {
+    this.service.postProducts(this.product).subscribe();
+  }
 }

@@ -1,0 +1,56 @@
+<div class="container mw-8">
+  <div class="d-flex sticky-top bg-light ">
+  <h1 class="flex-row p-2" style="text-align: center;">Katalog Produktów</h1>
+    <input type="text" class="form-control col flex-row ml-3" placeholder="Wyszukaj produkty" [(ngModel)]="term">
+  <a routerLink="/cart" style="text-align: right" class="col flex-row ">
+    <button class="btn btn-outline-info ">Koszyk<p>{{counter}}</p></button>
+  </a>
+
+  </div>
+
+
+  <table class="table">
+    <thead>
+    <tr class="row">
+      <th scope="col" class="col-2">Nazwa Produktu</th>
+      <th scope="col" class="col-1">Cena</th>
+      <th scope="col" class="col-4">Ilość</th>
+      <th scope="col" class="col-5"></th>
+    </tr>
+    </thead>
+  </table>
+  <form #addToCart="ngForm" *ngFor="let product of products | filter: term" (ngSubmit)="addToCard(product)">
+    <table class="table">
+
+      <tr class="row" [class.isCart]="isInCart(product)">
+        <td class="col-2">{{product.name }}</td>
+        <td class="col-1">{{ product.price + ' zł' }}</td>
+        <td  class="col-4 d-flex"><input class="flex-row" type="number" pattern="^[1-9]\d*$" #quantity="ngModel" [(ngModel)]="product.quantity"
+                               name="quantity">
+          <p class="flex-row text-danger ml-2" *ngIf="quantity.errors?.pattern">Ilość nie może być ujemna</p></td>
+        <td style="text-align: right" class="col-5">
+          <button class=" btn btn-primary"  [disabled]="addToCart.invalid">Dodaj do koszyka</button>
+        </td>
+      </tr>
+
+
+    </table>
+  </form>
+
+  <!--  <form #orderProduct="ngForm" (ngSubmit)="addProduct()">-->
+  <!--    <h1 style="text-align: center;">Zamów towar</h1>-->
+  <!--    <tr class="row">-->
+  <!--      <td class="col"><input type="text" placeholder="wprowadź nazwę towaru" [(ngModel)]="product.name" name="name"-->
+  <!--                             required></td>-->
+  <!--      <td class="col"><input type="number" placeholder="wprowadź cene towaru" [(ngModel)]="product.price" name="price"-->
+  <!--                             required></td>-->
+  <!--      <td class="col ">-->
+  <!--        <button [disabled]="orderProduct.invalid" class="btn btn-danger" type="submit">Zamów</button>-->
+  <!--      </td>-->
+  <!--      <td><a routerLink="/cart" class="col ">-->
+  <!--        <button class="btn btn-outline-info">Koszyk</button>-->
+  <!--      </a></td>-->
+  <!--    </tr>-->
+  <!--  </form>-->
+
+</div>
