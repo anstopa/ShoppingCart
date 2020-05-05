@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import {CommonModule, FormStyle} from '@angular/common';
-import {CartComponent} from './cart.component';
+import {CartComponent} from './cart/cart.component';
 import {RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 

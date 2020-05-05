@@ -1,8 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {CatalogComponent} from './catalog/catalog.component';
-import {CartComponent} from './cart/cart.component';
+import {CatalogComponent} from './catalog/catalog/catalog.component';
+import {CartComponent} from './cart/cart/cart.component';
 
 const routes: Routes = [
   {
@@ -24,4 +23,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

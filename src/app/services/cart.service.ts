@@ -1,26 +1,24 @@
 import {Injectable} from '@angular/core';
-import {Product} from '../product';
+import {Product} from '../catalog/catalog/product';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-
-// @ts-ignore
-import config from '../../assets/configs/config.json';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  url = config.urls.appUrl;
-  port = config.urls.port;
+  apiUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) {
   }
 
   deleteProduct(id: number): Observable<Product[]> {
-    return this.http.delete<Product[]>(`${this.url}${this.port}/api/cart/${id}`);
+    return this.http.delete<Product[]>(`${this.apiUrl}/api/cart/${id}`);
   }
+
   getCartProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.url}${this.port}/api/cart/getCartProducts`);
+    return this.http.get<Product[]>(`${this.apiUrl}/api/cart/getCartProducts`);
   }
 
 }
