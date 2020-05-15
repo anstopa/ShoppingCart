@@ -8,6 +8,9 @@ import {AppComponent} from './app.component';
 import {CatalogModule} from './catalog/catalog.module';
 import {CartModule} from './cart/cart.module';
 import {AppRoutingModule} from './app-routing.module';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import {AppRoutingModule} from './app-routing.module';
     FormsModule,
     CatalogModule,
     CartModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
