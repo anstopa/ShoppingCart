@@ -9,20 +9,17 @@ import {Product} from '../Models/cart.models';
   providedIn: 'root'
 })
 export class CatalogService {
- private apiUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) {
   }
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/api/products/getProduct`);
+    return this.http.get<Product[]>(`${environment.apiUrl}/api/products/getProduct`);
   }
 
   addToCard(product: Product) {
-    return this.http.put(`${this.apiUrl}/api/cart/${product.productId}`, product);
+    return this.http.put(`${environment.apiUrl}/api/cart/${product.productId}`, product);
   }
-
-
 
 
 }

@@ -1,16 +1,16 @@
-<div class="container">
+<div class="container col-8">
   <div class="d-flex sticky-top bg-light row ">
     <a routerLink="" class="col-1 flex-row  text-decoration-none">
-      <button class="btn btn-outline-info">Katalog</button>
+      <button class="btn btn-link"><i class="fas fa-arrow-alt-circle-left"></i></button>
     </a>
-    <h1 class="col-11 flex-row mw-50 " style="text-align: center;">Koszyk</h1>
+    <h1 class="col-11 flex-row mw-50 " style="text-align: center;">Shopping Card</h1>
   </div>
   <table class="table">
     <thead>
     <tr class="row">
-      <th scope="col" class="col">Nazwa produktu</th>
-      <th scope="col" class="col">Cena</th>
-      <th scope="col" class="col">Ilość</th>
+      <th scope="col" class="col">Product Name</th>
+      <th scope="col" class="col">Price</th>
+      <th scope="col" class="col">Quantity</th>
       <th scope="col" class="col"></th>
     </tr>
     </thead>
@@ -20,17 +20,17 @@
       <td class="col">{{product.price}} zł</td>
       <td class="col d-flex"><input type="number" min="1" #quantity="ngModel" [(ngModel)]=product.quantity
                                     pattern="^[1-9]\d*$">
-        <p class="flex-row text-danger ml-2" *ngIf="quantity.errors?.pattern">Ilość nie może być ujemna</p></td>
+        <p class="flex-row text-danger ml-2" *ngIf="quantity.errors?.pattern">Quantity cannot be negative</p></td>
       <td class="col">
-        <button class="btn btn-danger" (click)="deleteProduct(product.productId)">Usuń</button>
+        <button class="btn btn-danger" (click)="deleteProduct(product.productId)">Delete</button>
       </td>
     </tr>
     </tbody>
     <tfoot>
     <tr class="row">
       <td class="col">
-        <div>Wartość</div>
-        <p>{{total}}</p>
+        <div>Value: {{total}}</div>
+
       </td>
     </tr>
     </tfoot>

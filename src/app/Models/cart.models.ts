@@ -11,3 +11,7 @@ export interface Product {
   quantity?: number;
   relatedProducts?: string;
 }
+export interface Config {
+  production: boolean;
+  apiUrl: string;
+}
