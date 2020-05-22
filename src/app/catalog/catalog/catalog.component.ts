@@ -4,11 +4,10 @@ import {CatalogService} from '../../services/catalog.service';
 import {CartService} from '../../services/cart.service';
 import {Product} from '../../Models/cart.models';
 
-
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
-  styleUrls: ['./catalog.component.scss']
+  styleUrls: ['./catalog.component.scss'],
 })
 export class CatalogComponent implements OnInit {
   products: Product[] = [];
@@ -17,11 +16,14 @@ export class CatalogComponent implements OnInit {
   searchText: string;
   productRelated: Product[] = [];
 
-  constructor(private catalogService: CatalogService, private castService: CartService) {
+  constructor(
+    private catalogService: CatalogService,
+    private castService: CartService
+  ) {
   }
 
   ngOnInit(): void {
-    this.catalogService.getProducts().subscribe(response => {
+    this.catalogService.getProducts().subscribe((response) => {
       this.products = response;
       this.getCartProduct();
     });
@@ -30,9 +32,9 @@ export class CatalogComponent implements OnInit {
 
   addToCard(product: Product) {
     this.product = product;
-    this.catalogService.addToCard(this.product).subscribe(
-      () => this.getCartProduct(),
-    );
+    this.catalogService
+      .addToCard(this.product)
+      .subscribe(() => this.getCartProduct());
     this.isInCart(product);
     this.relatedProducts(product);
   }
@@ -45,13 +47,15 @@ export class CatalogComponent implements OnInit {
   }
 
   getCartProduct() {
-    this.castService.getCartProducts().subscribe(response => {
+    this.castService.getCartProducts().subscribe((response) => {
       this.cartProduct = response;
     });
   }
 
   isInCart(product) {
-    return this.cartProduct.some(item => item.productId === product.productId);
+    return this.cartProduct.some(
+      (item) => item.productId === product.productId
+    );
   }
 
   relatedProducts(product: Product) {
@@ -59,18 +63,15 @@ export class CatalogComponent implements OnInit {
       return null;
     } else {
       const relProd = product.relatedProducts.split(',');
-      relProd.forEach(y => {
-        this.productRelated
-          .push(this.products.find(x => x.productId === parseInt(y, 10)));
+      relProd.forEach((y) => {
+        this.productRelated.push(
+          this.products.find((x) => x.productId === parseInt(y, 10))
+        );
       });
-
     }
   }
 
   close() {
     this.productRelated = [];
   }
-
-
 }
-

@@ -1,59 +1,41 @@
-<div>
-  <div class="container col-8">
-    <div class="d-flex sticky-top bg-light row">
-      <h1 class="flex-row p-2 col-3" style="text-align: center">Product Catalog</h1>
+<div class="container col ">
+  <mat-toolbar color="primary" class="d-flex justify-content-between sticky-top">
 
-      <input type="text" class="form-control col-7 flex-row ml-3" [(ngModel)]="searchText"
-             placeholder="Search product">
+    <h3 class=" ">Product Catalog</h3>
 
-      <a routerLink="/cart" style="text-align: right" class="col flex-row ">
-        <button class="btn btn-link "><i class="fas fa-shopping-cart"><p class="counter">{{counter}}</p></i></button>
-      </a>
+    <input matInput type="text" class=" form-control  d-flex  ml-3" [(ngModel)]="searchText"
+           placeholder="Search product">
 
+    <a routerLink="/cart" style="text-align: right" class=" d-flex   ">
+      <button class="btn btn-link "><i class="fas fa-shopping-cart"><p class="counter">{{counter}}</p></i></button>
+    </a>
+  </mat-toolbar>
+
+  <div class="container d-flex flex-wrap">
+    <ng-container *ngFor="let product of products | filter: searchText">
+      <div class="col-12 col-sm-4 col-md-3 col-lg-2 mt-2 ">
+        <div class="product" [class.isCart]="isInCart(product)">
+          <h1 style="text-align: center">{{product.name | uppercase}}</h1>
+          <img class="mw-100" src="{{product.photoUrl}}">
+          <p class="col">Price {{product.price}} $</p>
+          <button mat-raised-button color="primary" class="col mb-1" (click)="addToCard(product)">Add to cart</button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="popup" *ngIf="productRelated.length != 0">
+
+    <div class="popup-info d-flex flex-column">
+      <p class="title">Related Products</p>
+      <div *ngFor="let item of productRelated" class="">
+        {{item.name}}
+      </div>
+
+      <span class="close " (click)="close()">&times;</span>
     </div>
-
-
-    <table class="table">
-      <thead>
-      <tr class="row">
-        <th scope="col" class="col-2">Product name</th>
-        <th scope="col" class="col-1">Price</th>
-        <th scope="col" class="col-4">Quantity</th>
-        <th scope="col" class="col-5"></th>
-      </tr>
-      </thead>
-    </table>
-
-    <table class="table">
-
-      <tr class="row" [class.isCart]="isInCart(product)" *ngFor="let product of products | filter: searchText">
-        <td class="col-2">{{product.name }}</td>
-        <td class="col-1">{{ product.price}} zł</td>
-        <td class="col-4 d-flex"><input class="flex-row" min="1" type="number" pattern="^[1-9]\d*$"
-                                        #quantity="ngModel"
-                                        [(ngModel)]="product.quantity" name="quantity">
-          <p class="flex-row text-danger ml-2" *ngIf="quantity.errors?.pattern">Quantity cannot be negative</p>
-        </td>
-        <td style="text-align: right" class="col-5">
-          <button class=" btn btn-primary"   (click)="addToCard(product)">Add to schopping card
-          </button>
-        </td>
-      </tr>
-
-
-    </table>
 
   </div>
 </div>
-<div class="popup" *ngIf="productRelated.length != 0">
 
-  <div class="popup-info d-flex flex-column">
-    <p class="title">Produkty powiązane</p>
-    <div *ngFor="let item of productRelated" class="">
-      {{item.name}}
-    </div>
 
-    <span class="close " (click)="close()">&times;</span>
-  </div>
-
-</div>

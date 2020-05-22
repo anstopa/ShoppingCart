@@ -1,55 +1,73 @@
-.fa-shopping-cart{
-  font-size: 3rem;
-  position: relative;
-  .counter {
-    position: absolute;
-    left: 50%;
-    top: 15%;
-    color: white;
-    font-family: Roboto;
-  }
-}
+.container {
+  padding: unset !important;
 
-table {
-margin-bottom: 5px;
-  input{
-    max-width: 50px;
+  .fa-shopping-cart {
+    font-size: 3rem;
+    position: relative;
+
+    .counter {
+      position: absolute;
+      left: 50%;
+      top: 15%;
+      color: white;
+      font-family: Roboto;
+    }
+  }
+
+  .product {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin: 1px;
+    box-shadow: 0px 0px 23px -13px rgba(0,0,0,0.75);
+    margin-top: 2px;
+
   }
   .isCart {
     background-color: lightgreen;
     border-radius: 10px;
   }
-}
-.popup {
-  //display: none;
-  position: fixed; /* Stay in place */
-  z-index: 9999; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  .title{
-    font-size: 1.5rem;
+  table {
+    margin-bottom: 5px;
+
+    input {
+      max-width: 50px;
+    }
+
+
   }
-  .popup-info{
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 30%;
-    border-radius: 10px;
-  text-align: center;
-    font-size: 1.5rem!important;
 
-    .close{
-      font-size: 3rem;
-      cursor: pointer;
-      width: 10%;
+  .popup {
+    //display: none;
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    .title {
+      font-size: 1.5rem;
+    }
 
+    .popup-info {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 30%;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.5rem !important;
+
+      .close {
+        font-size: 3rem;
+        cursor: pointer;
+        width: 10%;
+
+      }
     }
   }
 }
